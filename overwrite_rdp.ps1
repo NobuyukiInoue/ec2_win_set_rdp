@@ -96,7 +96,6 @@ function save_RDP_File([string]$filePath, [array]$lines)
 ##--------------------------------------------------------##
 ## ÉÅÉCÉì
 ##--------------------------------------------------------##
-
 Write-Host "<"$MyInvocation.MyCommand.Name">" -ForegroundColor Yellow
 
 if (-Not($publicIp)) {
