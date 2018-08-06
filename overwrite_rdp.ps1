@@ -25,16 +25,16 @@ function load_RDP_File_and_ipChange([string]$filePath)
                 Write-Host
 
                 # キー入力を調べる
-                if ((Check_ReadKey $filePath) -eq $False) {
+                if ((Check_ReadKey $filePath) -eq $FALSE) {
                     # "n"が入力された場合は終了する
-                    return $False
+                    return $FALSE
                 }
 
                 $lines += $new_fullAddr
             }
             else {
                 Write-Host "full address get Error!"
-                return $False
+                return $FALSE
             }
         }
         else {
@@ -50,27 +50,27 @@ function load_RDP_File_and_ipChange([string]$filePath)
 ##--------------------------------------------------------##
 function Check_ReadKey([string]$filePath)
 {
-    while ($true) {
+    while ($TRUE) {
         Write-Host "["$filePath"]" -NoNewline -ForegroundColor Yellow
         Write-Host " Overwrite? y/n [y]:" -NoNewline
 
         # キー入力の読み込み
-        $keyInfo = [Console]::ReadKey($true)
+        $keyInfo = [Console]::ReadKey($TRUE)
 
         Write-Host
 
         if (($keyInfo.Key -eq "n") -Or ($keyInfo.Key -eq "n")) {
             Write-Host "Canceled."
             Write-Host
-            return $False
+            return $FALSE
         }
         elseif (($keyInfo.Key -eq "Y") -Or ($keyInfo.Key -eq "y")) {
             Write-Host
-            return $True
+            return $TRUE
         }
         elseif ($keyInfo.Key -eq "Enter") {
             Write-Host
-            return $True
+            return $TRUE
         }
     }
 }
@@ -119,8 +119,8 @@ $lines = @()
 # RDPファイルを読み込む
 $lines = load_RDP_File_and_ipChange $rdp_filePath
 
-if ($lines -eq $False) {
-    return $False
+if ($lines -eq $FALSE) {
+    return $FALSE
 }
 
 # 現在の日付時刻を取得する
@@ -143,4 +143,4 @@ Write-Host "["$rdp_filePath"]" -NoNewline -ForegroundColor Yellow
 Write-Host " was saved."
 Write-Host
 
-return $True
+return $TRUE

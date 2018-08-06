@@ -7,23 +7,23 @@ function Check_startRun([string]$id)
 {
     Write-Host
 
-    while ($true) {
+    while ($TRUE) {
         Write-Host "Windows Server 2016 Let you start Now? (y/n) [y]:" -NoNewLine
 
         # キー入力の読み込み
-        $keyInfo = [Console]::ReadKey($true)
+        $keyInfo = [Console]::ReadKey($TRUE)
 
         if (($keyInfo.Key -eq "n") -Or ($keyInfo.Key -eq "n")) {
             Write-Host
-            return $False
+            return $FALSE
         }
         elseif (($keyInfo.Key -eq "Y") -Or ($keyInfo.Key -eq "y")) {
             Write-Host
-            return $True
+            return $TRUE
         }
         elseif ($keyInfo.Key -eq "Enter") {
             Write-Host
-            return $True
+            return $TRUE
         }
 
         Write-Host
@@ -62,7 +62,7 @@ do {
         # インスタンスの起動指示の確認
         $result = Check_startRun $id
 
-        if ($result -eq $True) {
+        if ($result -eq $TRUE) {
             # EC2インスタンスの起動
             aws ec2 start-instances --instance-ids $id
 
@@ -81,7 +81,7 @@ do {
 # 指定したrdpファイルの接続先IPアドレスを上書きする
 $result = .\overwrite_rdp.ps1 $rdp_filePath $publicIp
 
-if ($result -eq $True) {
+if ($result -eq $TRUE) {
     Write-Host "Start " -NoNewline
     Write-Host "["$rdp_filePath"]" -ForegroundColor Yellow
 

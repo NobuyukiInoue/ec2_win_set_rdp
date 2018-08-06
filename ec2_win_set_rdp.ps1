@@ -29,7 +29,7 @@ if (-Not($publicIp)) {
 # 指定したrdpファイルの接続先IPアドレスを上書きする
 $result = .\overwrite_rdp.ps1 $rdp_filePath $publicIp
 
-if ($result -eq $True) {
+if ($result -eq $TRUE) {
     Write-Host "Start " -NoNewline
     Write-Host "["$rdp_filePath"]" -ForegroundColor Yellow
 
