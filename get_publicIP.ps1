@@ -36,6 +36,9 @@ for ($i = 0; $i -lt $res.Length; $i++) {
             }
         }
 
+        ##--------------------------------------------------------------##
+        ## InstanceId‚ªŒ©‚Â‚©‚Á‚½‚çpublicIp‚ğ•Ô‚·
+        ##--------------------------------------------------------------##
         if ($Check_publicIp -eq $TRUE) {
             if ($res[$i].IndexOf("`"InstanceId`": `"$InstanceId`"") -ge 0) {
                 Write-Host "publicIpAddress : " -NoNewline
@@ -47,3 +50,6 @@ for ($i = 0; $i -lt $res.Length; $i++) {
         }
     }
 }
+
+# Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚Ínull‚ğ•Ô‚·
+return $NULL
