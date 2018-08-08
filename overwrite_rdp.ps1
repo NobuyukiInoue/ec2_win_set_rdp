@@ -59,7 +59,7 @@ function Check_ReadKey([string]$filePath)
 
         Write-Host
 
-        if (($keyInfo.Key -eq "n") -Or ($keyInfo.Key -eq "n")) {
+        if (($keyInfo.Key -eq "N") -Or ($keyInfo.Key -eq "n")) {
             Write-Host "Canceled."
             Write-Host
             return $FALSE

@@ -13,7 +13,7 @@ function Check_startRun([string]$id)
         # ÉLÅ[ì¸óÕÇÃì«Ç›çûÇ›
         $keyInfo = [Console]::ReadKey($TRUE)
 
-        if (($keyInfo.Key -eq "n") -Or ($keyInfo.Key -eq "n")) {
+        if (($keyInfo.Key -eq "N") -Or ($keyInfo.Key -eq "n")) {
             Write-Host
             return $FALSE
         }
