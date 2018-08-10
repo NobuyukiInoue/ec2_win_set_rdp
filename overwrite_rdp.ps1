@@ -77,14 +77,6 @@ function Check_ReadKey([string]$filePath)
 
 
 ##--------------------------------------------------------##
-## RDPファイルへの出力
-##--------------------------------------------------------##
-function save_RDP_File([string]$filePath, [array]$lines)
-{
-    Set-Content -Path $filePath -Value $lines -Encoding Unicode
-}
-
-##--------------------------------------------------------##
 ## メイン
 ##--------------------------------------------------------##
 
@@ -128,7 +120,7 @@ Write-Host "["$oldFileName"]" -ForegroundColor Yellow
 Write-Host
 
 # RDPファイルに書き込む
-save_RDP_File $rdp_filePath $lines
+Set-Content -Path $rdp_filePath -Value $lines -Encoding Unicode
 
 # 書き込み終了メッセージ
 Write-Host "["$rdp_filePath"]" -NoNewline -ForegroundColor Yellow
