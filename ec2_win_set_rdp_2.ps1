@@ -66,8 +66,8 @@ do {
             # EC2インスタンスの起動
             aws ec2 start-instances --instance-ids $id
 
-            Write-Host "Please wait 5 Seconds."
-            Start-Sleep -s 5
+            Write-Host "Please wait 15 Seconds."
+            Start-Sleep -s 15
         }
         else {
             # 起動しない場合は処理を終了する
