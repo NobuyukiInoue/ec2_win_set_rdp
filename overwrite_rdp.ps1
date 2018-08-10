@@ -59,7 +59,7 @@ function Check_ReadKey([string]$filePath)
 
         Write-Host
 
-        if (($keyInfo.Key -eq "N") -Or ($keyInfo.Key -eq "n")) {
+        if (($keyInfo.Key -eq "n") -Or ($keyInfo.Key -eq "n")) {
             Write-Host "Canceled."
             Write-Host
             return $FALSE
@@ -81,21 +81,13 @@ function Check_ReadKey([string]$filePath)
 ##--------------------------------------------------------##
 function save_RDP_File([string]$filePath, [array]$lines)
 {
-    for ($i = 0; $i -lt $lines.Length; $i++) {
-        if ($i -eq 0) {
-            $lines[$i] | Out-File $filePath -Encoding Unicode
-            # Write-Host $lines[$i]
-        }
-        else {
-            $lines[$i] | Out-File $filePath -Encoding Unicode -Append
-            # Write-Host $lines[$i]
-        }
-    }
+    Set-Content -Path $filePath -Value $lines -Encoding Unicode
 }
 
 ##--------------------------------------------------------##
 ## ÉÅÉCÉì
 ##--------------------------------------------------------##
+
 Write-Host "<"$MyInvocation.MyCommand.Name">" -ForegroundColor Yellow
 
 if (-Not($publicIp)) {
