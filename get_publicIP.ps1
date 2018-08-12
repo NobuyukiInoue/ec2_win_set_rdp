@@ -40,12 +40,17 @@ for ($i = 0; $i -lt $res.Length; $i++) {
         ## InstanceId‚ªŒ©‚Â‚©‚Á‚½‚çpublicIp‚ð•Ô‚·
         ##--------------------------------------------------------------##
         if ($Check_publicIp -eq $TRUE) {
-            if ($res[$i].IndexOf("`"InstanceId`": `"$InstanceId`"") -ge 0) {
-                Write-Host "publicIpAddress : " -NoNewline
-                Write-Host $publicIpStr -ForegroundColor Cyan
-                Write-Host
+            if ($res[$i].IndexOf("`"InstanceId`":") -ge 0) {
+                if ($res[$i].IndexOf("`"$InstanceId`"") -ge 0) {
+                    Write-Host "publicIpAddress : " -NoNewline
+                    Write-Host $publicIpStr -ForegroundColor Cyan
+                    Write-Host
 
-                return $publicIpStr
+                    return $publicIpStr
+                }
+                else {
+                    $Check_publicIp = $FALSE
+                }
             }
         }
     }
