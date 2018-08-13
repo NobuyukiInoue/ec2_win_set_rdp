@@ -3,17 +3,15 @@ param( $id, $rdp_filePath )
 ##--------------------------------------------------------##
 ## インスタンス起動指示確認
 ##--------------------------------------------------------##
-function Check_startRun([string]$id)
+function Check_startRun([string]$msg)
 {
-    Write-Host
-
     while ($TRUE) {
-        Write-Host "Windows Server 2016 Let you start Now? (y/n) [y]:" -NoNewLine
+        Write-Host $msg -NoNewLine
 
         # キー入力の読み込み
         $keyInfo = [Console]::ReadKey($TRUE)
 
-        if (($keyInfo.Key -eq "N") -Or ($keyInfo.Key -eq "n")) {
+        if (($keyInfo.Key -eq "n") -Or ($keyInfo.Key -eq "n")) {
             Write-Host
             return $FALSE
         }
@@ -49,9 +47,8 @@ Write-Host "<"$MyInvocation.MyCommand.Name">" -ForegroundColor Yellow
 
 # 指定した[InstanceId]の[publicIp]を取得
 
-
 do {
-    $publicIp = &".\get_publicIP.ps1" $id
+    $publicIp = &".\get_Win_PublicIp.ps1" $id
 
     if ($publicIp) {
         break
@@ -60,7 +57,7 @@ do {
         Write-Host "publicIp is Nothing."
 
         # インスタンスの起動指示の確認
-        $result = Check_startRun $id
+        $result = Check_startRun "Windows Server 2016 Let you start Now? (y/n) [y]:"
 
         if ($result -eq $TRUE) {
             # EC2インスタンスの起動
@@ -70,21 +67,21 @@ do {
             Start-Sleep -s 15
         }
         else {
-            # 起動しない場合は処理を終了する
+            # 起動しない場合は次の処理へ
             Write-Host
-            exit
+            # exit
         }
     }
 } while (-Not($publicIp))
 
-
 # 指定したrdpファイルの接続先IPアドレスを上書きする
 $result = .\overwrite_rdp.ps1 $rdp_filePath $publicIp
 
-if ($result -eq $TRUE) {
-    Write-Host "Start " -NoNewline
-    Write-Host "["$rdp_filePath"]" -ForegroundColor Yellow
+Write-Host "["$rdp_filePath"]" -ForegroundColor Yellow -NoNewline
 
-    # リモートデスクトップ接続を起動する
+# リモートデスクトップ接続の起動指示の確認
+$result = Check_startRun " Execute Now? (y/n) [y]:"
+
+if ($result -eq $TRUE) {
     &$rdp_filePath
 }

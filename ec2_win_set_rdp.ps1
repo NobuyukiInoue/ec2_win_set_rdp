@@ -18,13 +18,12 @@ if ($rdp_filePath.Substring(0,1) -ne ".") {
 Write-Host "<"$MyInvocation.MyCommand.Name">" -ForegroundColor Yellow
 
 # 指定した[InstanceId]の[publicIp]を取得
-$publicIp = &".\get_publicIP.ps1" $id
+$publicIp = &".\get_Win_PublicIp.ps1" $id
 
 if (-Not($publicIp)) {
     Write-Host "publicIp is Nothing."
     exit
 }
-
 
 # 指定したrdpファイルの接続先IPアドレスを上書きする
 $result = .\overwrite_rdp.ps1 $rdp_filePath $publicIp
