@@ -1,7 +1,7 @@
 param( $InstanceId )
 
 if (-Not($InstanceId)) {
-    Write-Host "Usage : "$MyInvocation.MyCommand.Name"InstanceId rdp_filePath" -ForegroundColor Red
+    Write-Host "Usage : "$MyInvocation.MyCommand.Name" InstanceId" -ForegroundColor Red
     exit
 }
 
