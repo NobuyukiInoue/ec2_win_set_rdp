@@ -18,7 +18,8 @@ if ($rdp_filePath.Substring(0,1) -ne ".") {
 Write-Host "<"$MyInvocation.MyCommand.Name">" -ForegroundColor Yellow
 
 # w’è‚µ‚½[InstanceId]‚Ì[publicIp]‚ğæ“¾
-$publicIp = &".\get_Win_PublicIp.ps1" $id
+$publicIp = &".\get_Win_PublicIpAddress_by_text.ps1" $id    # w’è‚µ‚½id‚ÌPublicIpAddress‚ğŒŸõ‚·‚é
+#$publicIp = &".\get_Win_PublicIpAddress_by_json.ps1" $id      # w’è‚µ‚½id‚ÌPublicIpAddress‚ğŒŸõ‚·‚é
 
 if (-Not($publicIp)) {
     Write-Host "publicIp is Nothing."
