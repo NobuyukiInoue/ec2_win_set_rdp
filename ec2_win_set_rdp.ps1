@@ -21,7 +21,7 @@ Write-Host "<"$MyInvocation.MyCommand.Name">" -ForegroundColor Yellow
 $publicIp = &".\get_Win_PublicIpAddress_by_text.ps1" $id    # w’è‚µ‚½id‚ÌPublicIpAddress‚ğŒŸõ‚·‚é
 #$publicIp = &".\get_Win_PublicIpAddress_by_json.ps1" $id      # w’è‚µ‚½id‚ÌPublicIpAddress‚ğŒŸõ‚·‚é
 
-if (-Not($publicIp)) {
+if ($publicIp -eq "None") {
     Write-Host "publicIp is Nothing."
     exit
 }

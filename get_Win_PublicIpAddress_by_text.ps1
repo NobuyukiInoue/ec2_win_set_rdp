@@ -18,4 +18,4 @@ foreach ($var in $res) {
     }
 }
 
-return $NULL
+return "None"

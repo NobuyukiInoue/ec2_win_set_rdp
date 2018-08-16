@@ -51,7 +51,7 @@ do {
     $publicIp = &".\get_Win_PublicIpAddress_by_text.ps1" $id    # 指定したidのPublicIpAddressを検索する
     # $publicIp = &".\get_Win_PublicIpAddress_by_json.ps1" $id  # 指定したidのPublicIpAddressを検索する
 
-    if ($publicIp) {
+    if ($publicIp -ne "None") {
         break
     }
     else {
@@ -73,7 +73,7 @@ do {
             # exit
         }
     }
-} while (-Not($publicIp))
+} while ($publicIp -ne "None")
 
 # 指定したrdpファイルの接続先IPアドレスを上書きする
 $result = .\overwrite_rdp.ps1 $rdp_filePath $publicIp
